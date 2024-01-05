@@ -14,21 +14,23 @@ use crate::{
 };
 
 fn main() {
-    let mut android_emulators: Vec<Device> = Vec::new();
     let mut ios_simulators: Vec<Device> = Vec::new();
 
     if env::consts::OS == "macos" {
         ios_simulators = fetch_devices(Platform::IOS);
     }
 
-    android_emulators = fetch_devices(Platform::ANDROID);
+    let system_tray = default_tray(ios_simulators, fetch_devices(Platform::ANDROID));
 
-    let system_tray = default_tray(ios_simulators, android_emulators);
-
-    tauri::Builder::default()
-        .setup(|app| Ok(app.set_activation_policy(tauri::ActivationPolicy::Accessory)))
+    let mut app = tauri::Builder::default()
         .system_tray(system_tray)
         .on_system_tray_event(tray_event_handler())
-        .run(tauri::generate_context!())
+        .build(tauri::generate_context!())
         .expect("error while running tauri application");
+
+    if env::consts::OS == "macos" {
+        app.set_activation_policy(tauri::ActivationPolicy::Accessory);
+    }
+
+    app.run(|_app_handle, _event| {});
 }
