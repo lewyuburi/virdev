@@ -28,9 +28,8 @@ fn main() {
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
 
-    if env::consts::OS == "macos" {
-        app.set_activation_policy(tauri::ActivationPolicy::Accessory);
-    }
+    #[cfg(target_os = "macos")]
+    app.set_activation_policy(tauri::ActivationPolicy::Accessory);
 
     app.run(|_app_handle, _event| {});
 }
