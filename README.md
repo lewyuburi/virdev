@@ -2,6 +2,8 @@
 
 A lightweight tool for launching Android emulators and iOS simulators on macOS, Windows, and Linux from the system tray.
 
+<img width="1194" alt="Screenshot 2024-01-05 at 2 38 08 PM" src="https://github.com/lewyuburi/virdev/assets/2156790/7632bebe-f8e9-4f74-acaa-caf069de399a">
+
 ## Description
 
 VirDev simplifies the process of launching emulators for both iOS and Android platforms on various operating systems. Whether you're developing mobile applications or testing, this tool provides a convenient way to manage and start emulators with ease.
