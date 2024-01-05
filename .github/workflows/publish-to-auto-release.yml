@@ -24,7 +24,11 @@ jobs:
           node-version: 20
 
       - name: install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+          components: rust-src
 
       - name: install trunk
         uses: jetli/trunk-action@v0.4.0
